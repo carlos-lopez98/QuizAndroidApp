@@ -12,5 +12,10 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <!--This property makes it to where the android top bar is gone **-->
+        <item name="android:windowFullscreen">true</item>
+
+
     </style>
 </resources>

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/ic_bg"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:gravity="center">
 
     <TextView
         android:layout_width="match_parent"
@@ -15,14 +16,17 @@
         android:text="@string/quiz_app"
         android:textColor="@color/white"
         android:textSize="25sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginBottom = "20dp"/>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
+        android:layout_marginEnd="20dp"
+        app:cardCornerRadius="20dp"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,19 +46,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_marginTop="16dp"
                 android:text="@string/enter_name"
                 android:textColor="@color/grey"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <TextView
+          <!--Input Layout is a grey area where it signals to user
+                that text should go there
+            -->
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/welcome"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_marginTop="20dp"
+                >
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name_hint"
+                    android:textColor="@color/grey"
+                    android:inputType="textCapWords"
+                    android:textColorHint="@color/grey"
+                  >
+
+                </androidx.appcompat.widget.AppCompatEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+           <Button
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="16dp"
+               android:text="@string/start_button"
+               android:background="@color/design_default_color_primary"
+               android:textSize="18sp"/>
+
         </LinearLayout>
 
 
