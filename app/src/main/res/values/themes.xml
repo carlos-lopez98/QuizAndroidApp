@@ -15,7 +15,5 @@
 
         <!--This property makes it to where the android top bar is gone **-->
         <item name="android:windowFullscreen">true</item>
-
-
     </style>
 </resources>
