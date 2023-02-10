@@ -5,7 +5,7 @@ package com.cjl.quizapp
 //Saves boiler plate code as long as you pass in the parameters
 data class Question(
     val id: Int,
-    val questions: String,
+    val question: String,
     val image: Int,
 
     val optionOne: String,

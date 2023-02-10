@@ -6,4 +6,5 @@
     <string name="name_hint">e.g. John</string>
     <string name="start_button">Start</string>
     <string name="quizImage">Quiz Image</string>
+    <string name="submitButton">SUBMIT</string>
 </resources>

@@ -113,6 +113,16 @@
             android:textColor="@color/lightGrey"
             android:textSize="18sp"
             tools:text="Apple" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/design_default_color_primary"
+        android:text="@string/submitButton"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
+    </LinearLayout>
 </ScrollView>
