@@ -6,10 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.ContextCompat
 
 class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
@@ -62,6 +59,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
      * Set's the Question Screen along with the question that is being displayed
      */
     private fun setQuestion() {
+
+        defaultOptionsView()
 
         val question: Question = mQuestionsList!![myCurrentPosition - 1]
 
@@ -168,6 +167,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     when{
                         myCurrentPosition <= mQuestionsList!!.size -> {
                             setQuestion()
+                        } else -> {
+                        Toast.makeText(this, "Congratz You Made it to the End", Toast.LENGTH_LONG).show()
                         }
                     }
                 } else{
@@ -179,6 +180,18 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     }
 
                     answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
+
+
+                    if(myCurrentPosition == mQuestionsList!!.size){
+                        btnSubmit?.text = "FINISH"
+                    }else{
+                        btnSubmit?.text = "Next Question"
+                    }
+
+                    //Remember to change selected option back to zero
+                    mSelectedOptionPosition = 0
+
+
                 }
 
 
