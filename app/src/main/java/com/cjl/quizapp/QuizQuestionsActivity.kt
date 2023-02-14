@@ -58,7 +58,9 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         setQuestion()
     }
 
-
+    /**
+     * Set's the Question Screen along with the question that is being displayed
+     */
     private fun setQuestion() {
 
         val question: Question = mQuestionsList!![myCurrentPosition - 1]
@@ -79,13 +81,11 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }else {
             btnSubmit?.text = "SUBMIT"
         }
-
-
-
-
     }
 
-
+    /**
+     * Set's the default view of the buttons, all light grey
+     */
     private fun defaultOptionsView(){
         val options = ArrayList<TextView>()
 
@@ -112,6 +112,9 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    /**
+     * Set's the view for the option the user has currently selected
+     */
     private fun selectedOptionView(tv: TextView, selectedOptionNum: Int){
         defaultOptionsView() // Sets every button to it's normal look
 
@@ -126,7 +129,13 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-
+    /**
+     * Set's what happens on click for our clickable components
+     *
+     * IE. If tvOptionOne is clicked, border == purple
+     *
+     * IE. If submitBtn is clicked, move to next question, also let's you know if you're selectedOption is correct or wrong
+     */
     override fun onClick(view: View?) {
 
         when(view?.id){
@@ -151,9 +160,68 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
 
-//            R.id.btnSubmit -> {
-//                //TODO implement on click for submit button
-//            }
+            R.id.btnSubmit -> {
+
+                if(mSelectedOptionPosition == 0){
+                    myCurrentPosition++
+
+                    when{
+                        myCurrentPosition <= mQuestionsList!!.size -> {
+                            setQuestion()
+                        }
+                    }
+                } else{
+                    val question = mQuestionsList?.get(myCurrentPosition - 1)
+
+                    //If selected answer is incorrect, on submit click option will turn red
+                    if(question!!.correctAnswer != mSelectedOptionPosition){
+                        answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
+                    }
+
+                    answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
+                }
+
+
+
+
+            }
         }
+    }
+
+    /**
+     * Takes in the answer that the user selected
+     *
+     * If correct, we'll assign it green, if incorrect we'll assign it red
+     */
+    private fun answerView(answer: Int, drawableView: Int){
+
+        when(answer){
+            1 -> {
+                tvOptionOne?.background = ContextCompat.getDrawable(
+                    this,
+                    drawableView
+                )
+            }
+            2 -> {
+                tvOptionTwo?.background = ContextCompat.getDrawable(
+                    this,
+                    drawableView
+                )
+            }
+            3 -> {
+                tvOptionThree?.background = ContextCompat.getDrawable(
+                    this,
+                    drawableView
+                )
+            }
+            4 -> {
+                tvOptionFour?.background = ContextCompat.getDrawable(
+                    this,
+                    drawableView
+                )
+            }
+        }
+
+
     }
 }
