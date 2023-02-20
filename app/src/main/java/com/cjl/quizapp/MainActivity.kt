@@ -26,10 +26,11 @@ class MainActivity : AppCompatActivity() {
                 //Create an intent to move to a different screeen -- The intent is basically the instructions
                 //On what you want our button to do -- the startActivity takes the intent, which runs the intent
                 val intent: Intent = Intent(this, QuizQuestionsActivity::class.java)
+
+                intent.putExtra(Constants.USER_NAME, edName.text.toString())
                 startActivity(intent)
 
                 //Closes current activity
-                finish()
             }
         }
     }

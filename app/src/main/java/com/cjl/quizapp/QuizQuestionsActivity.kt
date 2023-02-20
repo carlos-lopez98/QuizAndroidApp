@@ -1,5 +1,6 @@
 package com.cjl.quizapp
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var myCurrentPosition: Int = 1
     private var mQuestionsList: ArrayList<Question>? = null
     private var mSelectedOptionPosition: Int = 0
+    private var mUserName: String? = null
+    private var mCorrectAnswers:Int = 0
 
     private var progressBar: ProgressBar? = null
     private var tvProgressBar: TextView? = null
@@ -31,6 +34,9 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_questions)
+
+        //Get the details from the intent that got us to this activity
+        mUserName = intent.getStringExtra(Constants.USER_NAME)
 
         progressBar = findViewById(R.id.progress_bar)
         tvProgressBar = findViewById(R.id.tv_progress)
@@ -168,7 +174,17 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                         myCurrentPosition <= mQuestionsList!!.size -> {
                             setQuestion()
                         } else -> {
-                        Toast.makeText(this, "Congratz You Made it to the End", Toast.LENGTH_LONG).show()
+                        //When we're at the end of the quiz
+
+                        val intent: Intent = Intent(this, Congrats::class.java)
+
+                        intent.putExtra(Constants.USER_NAME, mUserName)
+                        intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
+                        intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionsList?.size)
+
+                        startActivity(intent)
+                        //Finish makes sure this activity closes after going to the next activity,
+                        //It'll make it to when the user presses back he goes back to the main screen instead of the questions
                         }
                     }
                 } else{
@@ -177,6 +193,9 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     //If selected answer is incorrect, on submit click option will turn red
                     if(question!!.correctAnswer != mSelectedOptionPosition){
                         answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
+                    }else{
+                        //If Correct on submit, we'll count the correct answer
+                        mCorrectAnswers++
                     }
 
                     answerView(question.correctAnswer, R.drawable.correct_option_border_bg)

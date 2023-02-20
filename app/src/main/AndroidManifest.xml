@@ -13,6 +13,9 @@
             android:name=".QuizQuestionsActivity"
             android:exported="true" />
         <activity
+            android:name=".Congrats"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
